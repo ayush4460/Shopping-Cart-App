@@ -17,6 +17,41 @@ const Cart = () => {
           qty={1}
           id="adsd"
         />
+        <CartItem
+          imgSrc={img2}
+          name={"MacBook"}
+          price={120000}
+          qty={1}
+          id="adsd"
+        />
+        <CartItem
+          imgSrc={img2}
+          name={"MacBook"}
+          price={120000}
+          qty={1}
+          id="adsd"
+        />
+        <CartItem
+          imgSrc={img2}
+          name={"MacBook"}
+          price={120000}
+          qty={1}
+          id="adsd"
+        />
+        <CartItem
+          imgSrc={img2}
+          name={"MacBook"}
+          price={120000}
+          qty={1}
+          id="adsd"
+        />
+        <CartItem
+          imgSrc={img2}
+          name={"MacBook"}
+          price={120000}
+          qty={1}
+          id="adsd"
+        />
       </main>
 
       <aside>
@@ -29,32 +64,31 @@ const Cart = () => {
   );
 };
 
-const CartItem = (
-  imgSrc,
-  name,
-  price,
-  qty,
-  decrement,
-  increment,
-  deleteHandler,
-  id,
-) => {
-  <div className="cartItem">
-    <img src={imgSrc} alt="Item" />
-    <article>
-      <h3>{name}</h3>
-      <p>₹{price}</p>
-    </article>
-
-    <div>
-      <button onClick={() => decrement(id)}>-</button>
-      <p>{qty}</p>
-      <button onClick={() => increment(id)}>+</button>
-      <button></button>
+const CartItem = ({
+    imgSrc,
+    name,
+    price,
+    qty,
+    decrement,
+    increment,
+    deleteHandler,
+    id,
+  }) => (
+    <div className="cartItem">
+      <img src={imgSrc} alt="Item" />
+      <article>
+        <h3>{name}</h3>
+        <p>${price}</p>
+      </article>
+  
+      <div>
+        <button onClick={() => decrement(id)}>-</button>
+        <p>{qty}</p>
+        <button onClick={() => increment(id)}>+</button>
+      </div>
+  
+      <AiFillDelete onClick={() => deleteHandler(id)} />
     </div>
-
-    <AiFillDelete onClick={() => deleteHandler(id)} />
-  </div>;
-};
+  );
 
 export default Cart;
