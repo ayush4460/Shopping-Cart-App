@@ -1,4 +1,5 @@
 import React from "react";
+import { toast } from "react-hot-toast";
 import { AiFillDelete } from "react-icons/ai";
 import { useDispatch, useSelector } from "react-redux";
 
@@ -13,6 +14,7 @@ const Cart = () => {
       type:"addToCart",
       payload:{id},
     })
+    toast.success("Item Incremented")
     dispatch({type:"calculatePrice"})
   }
 
@@ -21,6 +23,7 @@ const Cart = () => {
       type:"decrement",
       payload:id,
     })
+    toast.success("Item Decremented")
     dispatch({type:"calculatePrice"})
   }
 
@@ -29,6 +32,7 @@ const Cart = () => {
       type:"deleteFromCart",
       payload:id,
     })
+    toast.success("Item Removed")
     dispatch({type:"calculatePrice"})
   }
 
