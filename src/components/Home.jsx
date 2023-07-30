@@ -11,13 +11,13 @@ const Home = () => {
   const productList = [
     {
       name: "Mac Book",
-      price: 120000,
+      price: 40000,
       imgSrc: img1,
       id: "12345678",
     },
     {
       name: "Black Shoes",
-      price: 4900,
+      price: 10000,
       imgSrc: img2,
       id: "abcdefghij",
     },
@@ -29,6 +29,7 @@ const Home = () => {
     console.log(options);
     toast.success("Added To Cart");
     dispatch({type:"addToCart",payload:options});
+    dispatch({type:"calculatePrice"})
   };
   return (
     <div className="home">

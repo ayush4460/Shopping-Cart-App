@@ -1,13 +1,37 @@
 import React from "react";
 import { AiFillDelete } from "react-icons/ai";
-import { useSelector } from "react-redux";
-
-const img2 =
-  "https://encrypted-tbn1.gstatic.com/shopping?q=tbn:ANd9GcQmEOG7zIMyO6XMq_xzmGaovJqfM7O2akfmxmn5Bj8EurLzl8J_Xc8kj0s7C6RTfI7WYbTqgSMDdVadxModKij9sV4VsabRahqIbVh-ejWD1u1jZmaJdkPF";
+import { useDispatch, useSelector } from "react-redux";
 
 const Cart = () => {
 
-  const { cartItems } = useSelector(state=>state.cart)
+  const { cartItems,subTotal,tax,shipping,total } = useSelector(state=>state.cart)
+
+  const dispatch = useDispatch();
+
+  const increment=(id)=>{
+    dispatch({
+      type:"addToCart",
+      payload:{id},
+    })
+    dispatch({type:"calculatePrice"})
+  }
+
+  const decrement=(id)=>{
+    dispatch({
+      type:"decrement",
+      payload:id,
+    })
+    dispatch({type:"calculatePrice"})
+  }
+
+  const deleteHandler=(id)=>{
+    dispatch({
+      type:"deleteFromCart",
+      payload:id,
+    })
+    dispatch({type:"calculatePrice"})
+  }
+
   return (
     <div className="cart">
       <main>
@@ -21,6 +45,9 @@ const Cart = () => {
       qty={i.quantity}
       id={i.id}
       key={i.id}
+      decrement={decrement}
+      increment={increment}
+      deleteHandler={deleteHandler}
     />
     ))
   ) : (
@@ -30,10 +57,10 @@ const Cart = () => {
       </main>
 
       <aside>
-        <h2>SubTotal: ₹{2000}</h2>
-        <h2>Shipping: ₹{200}</h2>
-        <h2>Tax: ₹{20}</h2>
-        <h2>Total: ₹{2220}</h2>
+        <h2>SubTotal: ₹{subTotal}</h2>
+        <h2>Shipping: ₹{shipping}</h2>
+        <h2>Tax: ₹{tax}</h2>
+        <h2>Total: ₹{total}</h2>
       </aside>
     </div>
   );
